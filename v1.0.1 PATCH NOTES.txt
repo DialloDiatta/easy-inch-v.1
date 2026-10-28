@@ -1,0 +1,9 @@
+- Changed the scene hierarchy so the frames sit above instantiated virtual blocks.
+- Updated the version identifier label to reflect true version name.
+
+
+1.0.2
+
+- Bug fixes and optimization. 
+- Changed the button text from "Change Font" to "Check"
+- Update the refresh button and key so it clears the board and refreshes the value. 

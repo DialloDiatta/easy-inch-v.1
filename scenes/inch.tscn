@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b51cgvc31sv8y"]
+
+[ext_resource type="Texture2D" uid="uid://c8soqp2s0mev" path="res://assets/linear_inch.svg" id="1_tr4q7"]
+[ext_resource type="Script" uid="uid://b02biovthrynl" path="res://v.2 Components/ClearComponent.gd" id="2_iqee4"]
+[ext_resource type="Script" uid="uid://c8p7603jdrqbm" path="res://v.2 Components/DragComponent.gd" id="3_u6rp0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwgto"]
+size = Vector2(682, 132)
+
+[node name="Inch" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tr4q7")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_pwgto")
+
+[node name="ClearComponent" type="Node2D" parent="."]
+script = ExtResource("2_iqee4")
+
+[node name="DragComponent" type="Node2D" parent="."]
+script = ExtResource("3_u6rp0")

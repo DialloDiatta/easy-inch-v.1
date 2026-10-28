@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://boa5g2rjlincd"]
+
+[ext_resource type="Texture2D" uid="uid://xo7mbi3cgmvj" path="res://assets/background.svg" id="1_6ddmj"]
+[ext_resource type="Texture2D" uid="uid://me46c8o6jg0q" path="res://assets/frame.svg" id="2_i4mqx"]
+[ext_resource type="PackedScene" uid="uid://cn5ga8452u3ft" path="res://scenes/palm_base.tscn" id="3_34ovx"]
+[ext_resource type="PackedScene" uid="uid://bq8hljfa8dg63" path="res://scenes/double_finger_base.tscn" id="4_1ldll"]
+[ext_resource type="PackedScene" uid="uid://cpbc1jyrjhvoa" path="res://scenes/finger_base.tscn" id="5_2elxv"]
+[ext_resource type="PackedScene" uid="uid://wqf345waaxsn" path="res://scenes/inch_base.tscn" id="6_ax1fg"]
+[ext_resource type="Script" uid="uid://bfuxlhmjkupbh" path="res://scripts/ClearButtonComponent.gd" id="7_8l73x"]
+[ext_resource type="PackedScene" uid="uid://xtvvj842fq4w" path="res://scenes/double_palm_base.tscn" id="7_c3ygl"]
+[ext_resource type="Texture2D" uid="uid://dblm4mielgj33" path="res://assets/png/clear_butoon.png" id="8_f1txq"]
+[ext_resource type="PackedScene" uid="uid://c7vhsu3gq8ty6" path="res://scenes/disclaimer.tscn" id="8_pojed"]
+
+[node name="world" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_6ddmj")
+metadata/_edit_lock_ = true
+
+[node name="BASES" type="Node2D" parent="."]
+position = Vector2(179, 777)
+
+[node name="Palm" parent="BASES" instance=ExtResource("3_34ovx")]
+
+[node name="DoubleFinger" parent="BASES" instance=ExtResource("4_1ldll")]
+position = Vector2(146, 0)
+
+[node name="Finger" parent="BASES" instance=ExtResource("5_2elxv")]
+position = Vector2(236, 4)
+
+[node name="Inch" parent="BASES" instance=ExtResource("6_ax1fg")]
+position = Vector2(90, -278)
+
+[node name="DoublePalmBase" parent="BASES" instance=ExtResource("7_c3ygl")]
+position = Vector2(91, -156)
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="ClearButtonComponent" type="Node2D" parent="Blocks" node_paths=PackedStringArray("clear_button")]
+script = ExtResource("7_8l73x")
+clear_button = NodePath("../../CanvasLayer/ClearButton")
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(830.5, 540)
+texture = ExtResource("2_i4mqx")
+
+[node name="Frame2" type="Sprite2D" parent="."]
+position = Vector2(1512.5, 540)
+texture = ExtResource("2_i4mqx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ClearButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.5
+offset_top = 53.0
+offset_right = 134.5
+offset_bottom = 169.0
+grow_horizontal = 2
+texture_normal = ExtResource("8_f1txq")
+
+[node name="Disclaimer" parent="CanvasLayer" instance=ExtResource("8_pojed")]
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 4.0
+offset_bottom = 8.0

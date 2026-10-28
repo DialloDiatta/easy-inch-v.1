@@ -1,0 +1,236 @@
+[gd_scene load_steps=16 format=3 uid="uid://hc5tuvx1thi3"]
+
+[ext_resource type="Shader" uid="uid://bf0yh1jv1qj4x" path="res://addons/zzz-inventory/shaders/dashed_lines.gdshader" id="1_o5qli"]
+[ext_resource type="FontFile" uid="uid://cpogogne5nlnt" path="res://addons/zzz-inventory/fonts/Montserrat-ExtraBold.ttf" id="2_jyhfs"]
+[ext_resource type="Shader" uid="uid://dk2x6rp7t08ic" path="res://addons/zzz-inventory/shaders/scroll-horizontal.gdshader" id="2_o6xl0"]
+[ext_resource type="Script" uid="uid://b2ndxp2uqdi2i" path="res://addons/zzz-inventory/scripts/main.gd" id="2_tipki"]
+[ext_resource type="Resource" uid="uid://b50l13xcbfv68" path="res://resources/random_tutorial.tres" id="3_mrqad"]
+[ext_resource type="FontFile" uid="uid://c768nj35exla2" path="res://addons/zzz-inventory/fonts/acumin-pro-extra-condensed-black.otf" id="3_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://c1fie7dttn0x6" path="res://addons/zzz-inventory/assets/scroll_text.png" id="3_tipki"]
+[ext_resource type="Theme" uid="uid://cx24spu84dkkv" path="res://addons/zzz-inventory/themes/button.tres" id="4_tbgi4"]
+[ext_resource type="VideoStream" uid="uid://bwkxnjx56lbgu" path="res://assets/ogv/2026-01-11 12-53-58.ogv" id="8_d7niy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
+shader = ExtResource("1_o5qli")
+shader_parameter/color_one = Color(0.08, 0.08, 0.08, 1)
+shader_parameter/color_two = Color(0.02, 0.02, 0.02, 1)
+shader_parameter/angle = 120.0
+shader_parameter/line_count = 1250.0
+shader_parameter/speed = 0.0
+shader_parameter/blur = 0.0
+shader_parameter/alpha = 0.6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
+bg_color = Color(0.0687983, 0.0687983, 0.0687982, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85g3d"]
+shader = ExtResource("2_o6xl0")
+shader_parameter/speed = 0.1
+shader_parameter/angle = 45.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+bg_color = Color(0.027451, 0.027451, 0.027451, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+bg_color = Color(0.027451, 0.027451, 0.027451, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_tbgi4")
+script = ExtResource("2_tipki")
+tutorial_resource = ExtResource("3_mrqad")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0wfyh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopUp" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PopUp"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tipki")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PopUp/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopUp/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PopUp/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jyhfs")
+theme_override_font_sizes/font_size = 36
+text = "Tutorial"
+uppercase = true
+
+[node name="Close" type="Button" parent="PopUp/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 24
+text = "Close"
+
+[node name="PanelContainer" type="PanelContainer" parent="PopUp/PanelContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o6xl0")
+
+[node name="TextureRect" type="TextureRect" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer"]
+material = SubResource("ShaderMaterial_85g3d")
+layout_mode = 2
+texture = ExtResource("3_tipki")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Panel" type="PanelContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyhfs")
+
+[node name="MarginContainer" type="MarginContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="TutorialTitle" type="Label" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jyhfs")
+theme_override_font_sizes/font_size = 24
+text = "Title of Tutorial"
+
+[node name="Label2" type="Label" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_tbgi4")
+theme_override_font_sizes/font_size = 18
+text = "Handbook"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="PanelContainer" type="PanelContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tefeu")
+
+[node name="MarginContainer" type="MarginContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TextField" type="MarginContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TextField"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Instruction" type="Label" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TextField/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jyhfs")
+theme_override_font_sizes/font_size = 0
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non lobortis tortor.
+
+ Cras maximus odio dolor, vitae blandit purus mattis sed. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam feugiat metus lectus, quis tempus velit porttitor a."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TutVid" type="VideoStreamPlayer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+stream = ExtResource("8_d7niy")
+autoplay = true
+expand = true
+loop = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Previous" type="Button" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme = ExtResource("4_tbgi4")
+text = "Previous"
+
+[node name="Next" type="Button" parent="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme = ExtResource("4_tbgi4")
+text = "Next"
+
+[connection signal="pressed" from="PopUp/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="PopUp/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]

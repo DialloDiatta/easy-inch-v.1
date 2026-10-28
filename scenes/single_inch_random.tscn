@@ -1,0 +1,167 @@
+[gd_scene load_steps=10 format=3 uid="uid://qddc45s5kgi8"]
+
+[ext_resource type="PackedScene" uid="uid://d2x44hovrxmox" path="res://scenes/single_inch_interface.tscn" id="1_1m83t"]
+[ext_resource type="PackedScene" uid="uid://pnnasag5ruee" path="res://scenes/random_value.tscn" id="2_lmbmd"]
+[ext_resource type="Script" uid="uid://bwx8egk7jn842" path="res://scripts/world.gd" id="2_y00a6"]
+[ext_resource type="AudioStream" uid="uid://crxntabxvsini" path="res://assets/SFX/level-up-1.mp3" id="3_1ktmh"]
+[ext_resource type="Script" uid="uid://dlixvdyyhreer" path="res://scripts/bla_ding.gd" id="4_j5msw"]
+[ext_resource type="Script" uid="uid://c6rh3hys6xwmp" path="res://scripts/tracker.gd" id="5_bcr66"]
+[ext_resource type="PackedScene" uid="uid://dqk3wsv18j7cc" path="res://scenes/vignette.tscn" id="6_r7rdx"]
+[ext_resource type="PackedScene" uid="uid://hc5tuvx1thi3" path="res://addons/zzz-inventory/scenes/tutorial.tscn" id="9_57lpr"]
+[ext_resource type="PackedScene" uid="uid://ckk2182qcuffm" path="res://addons/zzz-inventory/scenes/items_obtained.tscn" id="9_aua0c"]
+
+[node name="world" instance=ExtResource("1_1m83t")]
+script = ExtResource("2_y00a6")
+
+[node name="Frame" parent="." index="3"]
+unique_name_in_owner = true
+
+[node name="RandomValue" parent="." index="4" instance=ExtResource("2_lmbmd")]
+layout_mode = 1
+mouse_filter = 2
+
+[node name="ClearButton" parent="CanvasLayer" index="1"]
+visible = false
+
+[node name="bla-ding" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("3_1ktmh")
+script = ExtResource("4_j5msw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="7"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 124.0
+bbcode_enabled = true
+text = "⅕"
+
+[node name="Tracker" type="Control" parent="." index="8"]
+anchors_preset = 0
+offset_left = 62.0
+offset_top = 429.0
+offset_right = 576.0
+offset_bottom = 1007.0
+script = ExtResource("5_bcr66")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tracker" index="0"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -94.0
+offset_bottom = 336.0
+grow_horizontal = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Label" type="Label" parent="Tracker/VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Time Left"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Tracker/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_font_sizes/font_size = 35
+
+[node name="PauseButton" type="Button" parent="Tracker/VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "PAUSE TIMER"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Tracker/VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tracker/VBoxContainer/HBoxContainer2" index="0"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Total Completed: "
+
+[node name="TotalCompleted" type="Label" parent="Tracker/VBoxContainer/HBoxContainer2" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 35
+text = "000"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Tracker/VBoxContainer" index="4"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tracker/VBoxContainer/HBoxContainer3" index="0"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Completed this Round: "
+
+[node name="RoundCompleted" type="Label" parent="Tracker/VBoxContainer/HBoxContainer3" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 35
+text = "000"
+
+[node name="Rounds" type="Label" parent="Tracker/VBoxContainer" index="5"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Rounds"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tracker" index="1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 359.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoundTrackerContainer" type="VBoxContainer" parent="Tracker/ScrollContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tracker/ScrollContainer/RoundTrackerContainer" index="0"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Round Number  -------- Completed "
+
+[node name="Timer" type="Timer" parent="Tracker" index="2"]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tracker" index="3"]
+layout_mode = 1
+offset_left = 640.0
+offset_top = -360.0
+offset_right = 1140.0
+offset_bottom = -293.0
+
+[node name="Label" type="Label" parent="Tracker/HBoxContainer" index="0"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "SCORE:"
+
+[node name="Score" type="Label" parent="Tracker/HBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 48
+text = "0000"
+
+[node name="Vignette" parent="." index="9" instance=ExtResource("6_r7rdx")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+mouse_behavior_recursive = 1
+
+[node name="popup" parent="." index="10" instance=ExtResource("9_aua0c")]
+visible = false
+layout_mode = 1
+
+[node name="Tutorial" parent="." index="11" instance=ExtResource("9_57lpr")]
+layout_mode = 1
+
+[connection signal="toggled" from="Tracker/VBoxContainer/PauseButton" to="Tracker" method="_on_pause_button_toggled"]
+[connection signal="timeout" from="Tracker/Timer" to="Tracker" method="_on_timer_timeout"]

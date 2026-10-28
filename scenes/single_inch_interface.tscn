@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2x44hovrxmox"]
+
+[ext_resource type="Texture2D" uid="uid://xo7mbi3cgmvj" path="res://assets/background.svg" id="1_50mfh"]
+[ext_resource type="PackedScene" uid="uid://cn5ga8452u3ft" path="res://scenes/palm_base.tscn" id="3_8vom6"]
+[ext_resource type="PackedScene" uid="uid://bq8hljfa8dg63" path="res://scenes/double_finger_base.tscn" id="4_f3h58"]
+[ext_resource type="PackedScene" uid="uid://cpbc1jyrjhvoa" path="res://scenes/finger_base.tscn" id="5_ky15g"]
+[ext_resource type="PackedScene" uid="uid://xtvvj842fq4w" path="res://scenes/double_palm_base.tscn" id="7_l4ria"]
+[ext_resource type="Script" uid="uid://bfuxlhmjkupbh" path="res://scripts/ClearButtonComponent.gd" id="7_ndj6a"]
+[ext_resource type="PackedScene" uid="uid://wqf345waaxsn" path="res://scenes/inch_base.tscn" id="7_vyg7t"]
+[ext_resource type="PackedScene" uid="uid://ceyb0v0ibmgl0" path="res://scenes/single_inch_frame.tscn" id="8_7kjt6"]
+[ext_resource type="PackedScene" uid="uid://c7vhsu3gq8ty6" path="res://scenes/disclaimer.tscn" id="8_uw5rj"]
+[ext_resource type="Texture2D" uid="uid://dblm4mielgj33" path="res://assets/png/clear_butoon.png" id="9_ki13j"]
+
+[node name="world" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_50mfh")
+
+[node name="BASES" type="Node2D" parent="."]
+visible = false
+position = Vector2(179, 777)
+
+[node name="Palm" parent="BASES" instance=ExtResource("3_8vom6")]
+
+[node name="DoubleFinger" parent="BASES" instance=ExtResource("4_f3h58")]
+position = Vector2(146, 0)
+
+[node name="Finger" parent="BASES" instance=ExtResource("5_ky15g")]
+position = Vector2(236, 4)
+
+[node name="Inch" parent="BASES" instance=ExtResource("7_vyg7t")]
+position = Vector2(90, -278)
+
+[node name="DoublePalmBase" parent="BASES" instance=ExtResource("7_l4ria")]
+position = Vector2(91, -156)
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="ClearButtonComponent" type="Node2D" parent="Blocks" node_paths=PackedStringArray("clear_button")]
+script = ExtResource("7_ndj6a")
+clear_button = NodePath("../../CanvasLayer/ClearButton")
+
+[node name="Frame" parent="." instance=ExtResource("8_7kjt6")]
+layout_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Disclaimer" parent="CanvasLayer" instance=ExtResource("8_uw5rj")]
+metadata/_edit_lock_ = true
+
+[node name="ClearButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.5
+offset_top = 45.0
+offset_right = 130.5
+offset_bottom = 161.0
+grow_horizontal = 2
+texture_normal = ExtResource("9_ki13j")

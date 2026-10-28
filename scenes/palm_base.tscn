@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn5ga8452u3ft"]
+
+[ext_resource type="Texture2D" uid="uid://bnja1yjmvdymk" path="res://assets/linear_palm.svg" id="1_cts5d"]
+[ext_resource type="Script" uid="uid://fgibqyhy6xaw" path="res://scripts/base.gd" id="1_v8ejk"]
+[ext_resource type="PackedScene" uid="uid://drt8tj3udq1x6" path="res://scenes/palm.tscn" id="2_85kcx"]
+[ext_resource type="Script" uid="uid://bht44bw6pxea5" path="res://v.2 Components/BaseComponent.gd" id="2_e7te5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwgto"]
+size = Vector2(166, 134)
+
+[node name="Palm" type="Node2D"]
+script = ExtResource("1_v8ejk")
+new_block = ExtResource("2_85kcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cts5d")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_pwgto")
+
+[node name="BaseComponent" type="Node2D" parent="."]
+script = ExtResource("2_e7te5")

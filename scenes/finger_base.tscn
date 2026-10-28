@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpbc1jyrjhvoa"]
+
+[ext_resource type="Script" uid="uid://fgibqyhy6xaw" path="res://scripts/base.gd" id="1_hq6jr"]
+[ext_resource type="Texture2D" uid="uid://dy021aerggegb" path="res://assets/linear_finger.svg" id="1_wjv4d"]
+[ext_resource type="Script" uid="uid://bht44bw6pxea5" path="res://v.2 Components/BaseComponent.gd" id="2_5hrpo"]
+[ext_resource type="PackedScene" uid="uid://bqwtc28dst00t" path="res://scenes/finger.tscn" id="2_73vrl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_di7ih"]
+size = Vector2(42, 134)
+
+[node name="FingerBase" type="Node2D"]
+script = ExtResource("1_hq6jr")
+new_block = ExtResource("2_73vrl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wjv4d")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_di7ih")
+
+[node name="BaseComponent" type="Node2D" parent="."]
+script = ExtResource("2_5hrpo")

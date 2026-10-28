@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ema4x1popeb2"]
+
+[ext_resource type="VideoStream" uid="uid://bwkxnjx56lbgu" path="res://assets/ogv/2026-01-11 12-53-58.ogv" id="1_gju0y"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+stream = ExtResource("1_gju0y")
+autoplay = true
+expand = true
+loop = true

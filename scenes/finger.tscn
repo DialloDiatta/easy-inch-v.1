@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqwtc28dst00t"]
+
+[ext_resource type="Texture2D" uid="uid://dy021aerggegb" path="res://assets/linear_finger.svg" id="1_ycg6y"]
+[ext_resource type="Script" uid="uid://b02biovthrynl" path="res://v.2 Components/ClearComponent.gd" id="2_jmqsi"]
+[ext_resource type="Script" uid="uid://c8p7603jdrqbm" path="res://v.2 Components/DragComponent.gd" id="3_ipaoe"]
+[ext_resource type="Script" uid="uid://citi75xap18fn" path="res://v.2 Components/DroppableComponent.gd" id="4_880fe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_di7ih"]
+size = Vector2(44, 134)
+
+[node name="Finger" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ycg6y")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_di7ih")
+
+[node name="ClearComponent" type="Node2D" parent="."]
+script = ExtResource("2_jmqsi")
+
+[node name="DragComponent" type="Node2D" parent="."]
+script = ExtResource("3_ipaoe")
+
+[node name="DroppableComponent" type="Node2D" parent="."]
+script = ExtResource("4_880fe")

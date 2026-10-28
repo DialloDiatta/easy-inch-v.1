@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="TutorialPack" load_steps=13 format=3 uid="uid://b50l13xcbfv68"]
+
+[ext_resource type="Script" uid="uid://cgadwvm57ytyy" path="res://addons/zzz-inventory/resources/tutorial_data.gd" id="1_5n6jg"]
+[ext_resource type="Script" uid="uid://msajlom3ov5w" path="res://addons/zzz-inventory/resources/tutorial_step.gd" id="2_cakno"]
+[ext_resource type="VideoStream" uid="uid://d2ku1o7fpprhy" path="res://assets/ogv/having fun.ogv" id="3_wxno1"]
+[ext_resource type="VideoStream" uid="uid://cc3htt6dfqyo3" path="res://assets/ogv/answering puzzles.ogv" id="4_4gxn1"]
+[ext_resource type="VideoStream" uid="uid://bb3icmcq3f25a" path="res://assets/ogv/game timeout.ogv" id="5_4gxn1"]
+[ext_resource type="VideoStream" uid="uid://70maj2ittnwr" path="res://assets/ogv/scoring.ogv" id="6_r06u8"]
+[ext_resource type="VideoStream" uid="uid://j5ds3ijfguf0" path="res://assets/ogv/sliders.ogv" id="7_ljyjs"]
+
+[sub_resource type="Resource" id="Resource_jwsg1"]
+script = ExtResource("2_cakno")
+title = "TIME TRIAL"
+instruction = "Welcome to the TIME TRIAL!!
+
+This is a fast paced game mode made to test your skills and help you improve!"
+video = ExtResource("3_wxno1")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[sub_resource type="Resource" id="Resource_ne57b"]
+script = ExtResource("2_cakno")
+title = "How To Play"
+instruction = "Every round, a random number between your minimum and maximum values will appear on the right. 
+Your goal is to place that value on the interface by activating it's cooresponding cells. 
+You will see a flash of green when your answer is correct, then a new number will immediately be provided."
+video = ExtResource("4_4gxn1")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[sub_resource type="Resource" id="Resource_nu3vt"]
+script = ExtResource("2_cakno")
+title = "The Goal"
+instruction = "Move fast! You will have a limited amount of time to place the correct value in the play space / interface. 
+
+If your timer reaches 0 before you place the correct value, your run will end.
+
+You will get less time the more answers you get correct. Stay sharp!
+
+"
+video = ExtResource("5_4gxn1")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[sub_resource type="Resource" id="Resource_g01td"]
+script = ExtResource("2_cakno")
+title = "Scoring Points"
+instruction = "You will get points for every puzzle you get correct.
+
+Using fewer pieces and having more time left will give you more points!
+
+Shoot to beat your personal high score!"
+video = ExtResource("6_r06u8")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[sub_resource type="Resource" id="Resource_wxno1"]
+script = ExtResource("2_cakno")
+title = "Difficulty"
+instruction = "If large values are giving you some trouble, you can adjust your minimum and maximum sliders to make generated numbers smaller. 
+
+Note: Feel free to pause the timer to enter practice mode. Your round will no longer end so you're free to play without pressure."
+video = ExtResource("7_ljyjs")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[resource]
+script = ExtResource("1_5n6jg")
+steps = Array[ExtResource("2_cakno")]([SubResource("Resource_jwsg1"), SubResource("Resource_ne57b"), SubResource("Resource_nu3vt"), SubResource("Resource_g01td"), SubResource("Resource_wxno1")])
+metadata/_custom_type_script = "uid://cgadwvm57ytyy"

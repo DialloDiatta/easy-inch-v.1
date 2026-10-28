@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c065ko0haa85p"]
+
+[ext_resource type="Theme" uid="uid://nx1hb51pun1e" path="res://themes/item_pop_up.tres" id="1_jnym0"]
+[ext_resource type="Texture2D" uid="uid://cslwp317ha0f2" path="res://assets/arrow_icon.svg" id="2_gcwhs"]
+[ext_resource type="Script" uid="uid://cvff8blm8ied3" path="res://scripts/zzz_obtain_button.gd" id="3_gcwhs"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(750, 0)
+theme = ExtResource("1_jnym0")
+text = "[Obtain] Something"
+icon = ExtResource("2_gcwhs")
+alignment = 0
+text_overrun_behavior = 2
+autowrap_mode = 1
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("3_gcwhs")

@@ -1,0 +1,295 @@
+[gd_scene load_steps=19 format=3 uid="uid://ckpm7usabb3qi"]
+
+[ext_resource type="Texture2D" uid="uid://badd685gttpn8" path="res://icon.svg" id="1_3ja67"]
+[ext_resource type="FontFile" uid="uid://cpogogne5nlnt" path="res://fonts/Montserrat-ExtraBold.ttf" id="1_fug0w"]
+[ext_resource type="Shader" uid="uid://bf0yh1jv1qj4x" path="res://shaders/dashed_lines.gdshader" id="1_gi3kw"]
+[ext_resource type="Shader" uid="uid://cf5uah0l1l4gw" path="res://shaders/black_and_white.gdshader" id="1_jevu7"]
+[ext_resource type="Script" uid="uid://csrvj3l7q0w0x" path="res://scripts/item_pop_up.gd" id="1_s7xl3"]
+[ext_resource type="Theme" uid="uid://nx1hb51pun1e" path="res://themes/item_pop_up.tres" id="3_3ja67"]
+[ext_resource type="Texture2D" uid="uid://dd8ey3ugikgu0" path="res://tiles/halftone-3px.png" id="3_4amc4"]
+[ext_resource type="Texture2D" uid="uid://cslwp317ha0f2" path="res://assets/arrow_icon.svg" id="3_ivetg"]
+[ext_resource type="FontFile" uid="uid://c768nj35exla2" path="res://fonts/acumin-pro-extra-condensed-black.otf" id="3_rodks"]
+[ext_resource type="PackedScene" uid="uid://c065ko0haa85p" path="res://scenes/zzz_obtain_button.tscn" id="8_11wkk"]
+[ext_resource type="Texture2D" uid="uid://ctk056jiqxfds" path="res://assets/_rarity_icon.png" id="8_t6vyh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngaio"]
+shader = ExtResource("1_gi3kw")
+shader_parameter/color_one = Color(0.08, 0.08, 0.08, 1)
+shader_parameter/color_two = Color(0.02, 0.02, 0.02, 1)
+shader_parameter/angle = 120.0
+shader_parameter/line_count = 1250.0
+shader_parameter/speed = 10.0
+shader_parameter/blur = 0.0
+shader_parameter/alpha = 0.6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jv0qc"]
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.149, 0.149, 0.149, 0.7)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_left = 35
+shadow_color = Color(0, 0, 0, 0.255)
+shadow_size = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rodks"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+border_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="Gradient" id="Gradient_gi3kw"]
+offsets = PackedFloat32Array(0, 0.912351)
+colors = PackedColorArray(0.168627, 0.168627, 0.168627, 1, 0.0627451, 0.0627451, 0.0627451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gi3kw"]
+gradient = SubResource("Gradient_gi3kw")
+fill_from = Vector2(0.299145, 0.311966)
+fill_to = Vector2(0.65812, 0.760684)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4amc4"]
+shader = ExtResource("1_jevu7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4amc4"]
+bg_color = Color(0.027451, 0.027451, 0.027451, 1)
+
+[node name="ItemPopUp" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_s7xl3")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ngaio")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopUp" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="PopUp"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jv0qc")
+
+[node name="Content" type="MarginContainer" parent="PopUp/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="PanelContainer" parent="PopUp/Panel/Content"]
+clip_children = 2
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rodks")
+
+[node name="BG Gradient" type="TextureRect" parent="PopUp/Panel/Content/Panel"]
+visible = false
+layout_mode = 2
+texture = SubResource("GradientTexture2D_gi3kw")
+
+[node name="Halftone" type="TextureRect" parent="PopUp/Panel/Content/Panel"]
+visible = false
+modulate = Color(1, 1, 1, 0.211765)
+texture_repeat = 2
+layout_mode = 2
+texture = ExtResource("3_4amc4")
+stretch_mode = 1
+
+[node name="IconPositionHandler" type="Control" parent="PopUp/Panel/Content/Panel"]
+visible = false
+layout_mode = 2
+
+[node name="B&WIcon" type="TextureRect" parent="PopUp/Panel/Content/Panel/IconPositionHandler"]
+modulate = Color(1, 1, 1, 0.231373)
+material = SubResource("ShaderMaterial_4amc4")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -396.0
+offset_top = -101.0
+offset_right = 104.0
+offset_bottom = 399.0
+grow_horizontal = 0
+scale = Vector2(0.948533, 0.953236)
+texture = ExtResource("1_3ja67")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp/Panel/Content/Panel"]
+layout_mode = 2
+
+[node name="Interactables" type="MarginContainer" parent="PopUp/Panel/Content/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="NameOfItem" type="Label" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.992157, 0.992157, 0.992157, 1)
+theme_override_fonts/font = ExtResource("1_fug0w")
+theme_override_font_sizes/font_size = 36
+text = "Name of Item"
+
+[node name="Owned" type="Label" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.992157, 0.992157, 0.992157, 1)
+theme_override_fonts/font = ExtResource("1_fug0w")
+theme_override_font_sizes/font_size = 24
+text = "Owned x 000"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 125)
+layout_mode = 2
+theme = ExtResource("3_3ja67")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Effect" type="Label" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.690196, 0.690196, 0.690196, 1)
+theme_override_fonts/font = ExtResource("1_fug0w")
+theme_override_font_sizes/font_size = 24
+text = "Effect"
+
+[node name="Description" type="Label" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_fonts/font = ExtResource("1_fug0w")
+theme_override_font_sizes/font_size = 24
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas efficitur lorem."
+autowrap_mode = 2
+
+[node name="ItemIcon" type="TextureRect" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_3ja67")
+stretch_mode = 5
+
+[node name="RarityIcon" type="TextureRect" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/HBoxContainer/ItemIcon"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -64.0
+offset_right = -32.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("8_t6vyh")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Button" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/MarginContainer/ButtonsContainer" instance=ExtResource("8_11wkk")]
+layout_mode = 2
+icon = null
+script = null
+
+[node name="Button2" type="Button" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/MarginContainer/ButtonsContainer"]
+layout_mode = 2
+theme = ExtResource("3_3ja67")
+text = "[Obtain] Something"
+icon = ExtResource("3_ivetg")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Button3" type="Button" parent="PopUp/Panel/Content/Panel/VBoxContainer/Interactables/VBoxContainer/MarginContainer/ButtonsContainer"]
+layout_mode = 2
+theme = ExtResource("3_3ja67")
+text = "[Obtain] Something"
+icon = ExtResource("3_ivetg")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Spacer" type="Panel" parent="PopUp/Panel/Content/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4amc4")
+
+[node name="Halftone" type="TextureRect" parent="PopUp/Panel/Content/Panel/VBoxContainer/Spacer"]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4amc4")
+stretch_mode = 1
+
+[node name="Category" type="MarginContainer" parent="PopUp/Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="ItemCategory" type="Label" parent="PopUp/Panel/Category"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.192157, 0.192157, 0.192157, 1)
+theme_override_fonts/font = ExtResource("3_rodks")
+theme_override_font_sizes/font_size = 70
+text = "Item Category"
+horizontal_alignment = 2
+uppercase = true
+
+[connection signal="gui_input" from="Background" to="." method="_on_background_gui_input"]

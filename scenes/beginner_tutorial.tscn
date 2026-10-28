@@ -1,0 +1,80 @@
+[gd_scene load_steps=16 format=3 uid="uid://br1dve4nrhc3s"]
+
+[ext_resource type="PackedScene" uid="uid://d2x44hovrxmox" path="res://scenes/single_inch_interface.tscn" id="1_dlccq"]
+[ext_resource type="PackedScene" uid="uid://hc5tuvx1thi3" path="res://addons/zzz-inventory/scenes/tutorial.tscn" id="2_w5423"]
+[ext_resource type="Script" uid="uid://cgadwvm57ytyy" path="res://addons/zzz-inventory/resources/tutorial_data.gd" id="3_6baje"]
+[ext_resource type="Script" uid="uid://msajlom3ov5w" path="res://addons/zzz-inventory/resources/tutorial_step.gd" id="4_l0be7"]
+[ext_resource type="VideoStream" uid="uid://bwkxnjx56lbgu" path="res://assets/ogv/2026-01-11 12-53-58.ogv" id="5_60fdj"]
+[ext_resource type="FontFile" uid="uid://deyma08hrfun8" path="res://fonts/Inches.otf" id="5_w5423"]
+[ext_resource type="Script" uid="uid://vbbmorp8n7p4" path="res://scripts/active_value.gd" id="6_6baje"]
+[ext_resource type="VideoStream" uid="uid://cf0wafkk4fkfh" path="res://assets/ogv/number double.ogv" id="6_xtwk1"]
+[ext_resource type="VideoStream" uid="uid://cydjptygn5cjg" path="res://assets/ogv/multiple pieces.ogv" id="7_s2rsc"]
+[ext_resource type="VideoStream" uid="uid://cshrb2fb87wfq" path="res://assets/ogv/counting up and down.ogv" id="8_c6vmu"]
+
+[sub_resource type="Resource" id="Resource_60fdj"]
+script = ExtResource("4_l0be7")
+title = "Getting Started"
+instruction = "In this tutorial, you'll learn how to use our game interface.
+
+Each Cell on the interface correlates with a number. 
+
+Clicking on a cell activates it's value. Click on it again to deactivate it. You can see the interfaces active value to the right. "
+video = ExtResource("5_60fdj")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[sub_resource type="Resource" id="Resource_6baje"]
+script = ExtResource("4_l0be7")
+title = "Building Values"
+instruction = "Each cell's value doubles as you go up the interface, starting at the bottom with 1 and ending at 16 at the top. 
+
+Each cell type also has a name:
+Yellow Fingers = 1
+Green Double Finger = 2
+Blue Palm = 4
+Orange Double Palm = 8
+Inch = 16
+
+Tip: We encourage you use your own palms and fingers to help memorize the pieces. "
+video = ExtResource("6_xtwk1")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[sub_resource type="Resource" id="Resource_xtwk1"]
+script = ExtResource("4_l0be7")
+title = "Combining Cells"
+instruction = "Multiple cells can be active at the same time. When two or more cells are active, their values combine with the sum shown on the right. "
+video = ExtResource("7_s2rsc")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[sub_resource type="Resource" id="Resource_s2rsc"]
+script = ExtResource("4_l0be7")
+title = "Practice"
+instruction = "Before hopping onto the \"Time Trial\" game mode, practice counting forward and backwards from 0-16 using each row of cells. 
+
+Tip: Say the value aloud as you count to make memorizing easier. 
+
+When you're ready, hit the \"ESC' key to return to the main menu and select the \"Time Trial\" game mode."
+video = ExtResource("8_c6vmu")
+metadata/_custom_type_script = "uid://msajlom3ov5w"
+
+[sub_resource type="Resource" id="Resource_auh5x"]
+script = ExtResource("3_6baje")
+steps = Array[ExtResource("4_l0be7")]([SubResource("Resource_60fdj"), SubResource("Resource_6baje"), SubResource("Resource_xtwk1"), SubResource("Resource_s2rsc")])
+metadata/_custom_type_script = "uid://cgadwvm57ytyy"
+
+[node name="world" instance=ExtResource("1_dlccq")]
+
+[node name="Tutorial" parent="." index="5" instance=ExtResource("2_w5423")]
+layout_mode = 1
+tutorial_resource = SubResource("Resource_auh5x")
+
+[node name="ActiveValue" type="Label" parent="." index="6"]
+layout_mode = 0
+offset_left = 1534.0
+offset_top = 301.0
+offset_right = 1727.0
+offset_bottom = 643.0
+theme_override_fonts/font = ExtResource("5_w5423")
+theme_override_font_sizes/font_size = 360
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("6_6baje")

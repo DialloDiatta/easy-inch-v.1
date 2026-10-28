@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://nbfkfji02pkb"]
+
+[ext_resource type="Shader" uid="uid://dk2x6rp7t08ic" path="res://shaders/scroll-horizontal.gdshader" id="1_27y8f"]
+[ext_resource type="Texture2D" uid="uid://c1fie7dttn0x6" path="res://assets/scroll_text.png" id="2_qb3ii"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27y8f"]
+shader = ExtResource("1_27y8f")
+shader_parameter/speed = 1.0
+shader_parameter/angle = 45.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_27y8f")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qb3ii")
+stretch_mode = 1

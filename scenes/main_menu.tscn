@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0puxkqi272g8"]
+
+[ext_resource type="Script" uid="uid://dyhmdkejuf0ab" path="res://v.2 Components/ButtonHoverComponent.gd" id="1_hkqsl"]
+[ext_resource type="Script" uid="uid://6k2ppq3ktnxi" path="res://scripts/main_menu.gd" id="1_p7ds6"]
+[ext_resource type="Texture2D" uid="uid://cgvtk2os7xk2q" path="res://assets/png/texture_bg.png" id="2_f10sy"]
+[ext_resource type="Texture2D" uid="uid://d4jaa0otqkmvm" path="res://assets/png/easy_inch_logo.png" id="3_iagsx"]
+[ext_resource type="Texture2D" uid="uid://65ogwcdcmslb" path="res://assets/png/single_inch_menu_button.png" id="4_bcwbq"]
+[ext_resource type="Texture2D" uid="uid://dsgmemr8jsmwa" path="res://assets/png/double_inch_menu_button.png" id="5_6w78c"]
+[ext_resource type="Texture2D" uid="uid://b2i3py87yfa48" path="res://assets/png/random_numbers_menu_button.png" id="7_4ru5s"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p7ds6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_f10sy")
+
+[node name="EasyInchLogo" type="Sprite2D" parent="."]
+position = Vector2(942, 202)
+texture = ExtResource("3_iagsx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -573.0
+offset_top = -167.0
+offset_right = 573.0
+offset_bottom = 404.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hkqsl")
+tween_intensity = 1.07
+tween_duration = 0.5
+
+[node name="SingleInch" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_bcwbq")
+
+[node name="DoubleInch" type="TextureButton" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("5_6w78c")
+
+[node name="RandomInch" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_4ru5s")
+
+[connection signal="pressed" from="HBoxContainer/SingleInch" to="." method="_on_single_inch_pressed"]
+[connection signal="pressed" from="HBoxContainer/DoubleInch" to="." method="_on_double_inch_pressed"]
+[connection signal="pressed" from="HBoxContainer/RandomInch" to="." method="_on_random_inch_pressed"]

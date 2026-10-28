@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://wqf345waaxsn"]
+
+[ext_resource type="Script" uid="uid://fgibqyhy6xaw" path="res://scripts/base.gd" id="1_nh8hl"]
+[ext_resource type="Texture2D" uid="uid://c8soqp2s0mev" path="res://assets/linear_inch.svg" id="1_tpvtb"]
+[ext_resource type="Script" uid="uid://bht44bw6pxea5" path="res://v.2 Components/BaseComponent.gd" id="2_forby"]
+[ext_resource type="PackedScene" uid="uid://b51cgvc31sv8y" path="res://scenes/inch.tscn" id="2_t4ue3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwgto"]
+size = Vector2(350, 72)
+
+[node name="InchBase" type="Node2D"]
+script = ExtResource("1_nh8hl")
+new_block = ExtResource("2_t4ue3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tpvtb")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_pwgto")
+
+[node name="BaseComponent" type="Node2D" parent="."]
+script = ExtResource("2_forby")
